@@ -4,6 +4,13 @@ and helps to abstract some low-level requirements and reduce the boiler-plate co
 As a side effect, the flexibility of RabbitMQ is lost. I'm working on increasing the capabilities of carrots.
 
 # Usage
+The main idea of carrots library is to provide an abstraction to work with RabbitMQ architectures.
+In this paradigm, an asynchronous architecture is made of blocks, each one of the blocks being a piece of software on
+its own. Blocks communicate through RabbitMQ, but this might get tedious.
+Carrots offer three roles to ease the development of such architectures: microproducers, microworkers, and microconsumers.
+These three roles can be understood as the entrypoints, middlepoints, and endpoints of a network of blocks that conform the service.
+
+INCLUDE SCHEME
 
 ## Examples
 

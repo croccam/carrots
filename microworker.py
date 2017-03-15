@@ -37,21 +37,18 @@ class Microworker(object):
         response = json.dumps(response)
         print(response)
         self.channel.basic_publish(self.exchange,
-                              self.qout,
-                              response,
-                              pika.BasicProperties(content_type='text/json',
-                                                   delivery_mode=1))
+                                   self.qout,
+                                   response,
+                                   pika.BasicProperties(content_type='text/json',
+                                                        delivery_mode=1))
+
     def start(self):
         parameters = pika.URLParameters(self.uri)
         self.connection = pika.SelectConnection(parameters=parameters,
-                                           on_open_callback=self.connection_open)
+                                                on_open_callback=self.connection_open)
 
         try:
-            # Step #2 - Block on the IOLoop
             self.connection.ioloop.start()
-        # Catch a Keyboard Interrupt to make sure that the connection is closed cleanly
         except KeyboardInterrupt:
-            # Gracefully close the connection
             self.connection.close()
-            # Start the IOLoop again so Pika can communicate, it will stop on its own when the connection is closed
             self.connection.ioloop.start()
