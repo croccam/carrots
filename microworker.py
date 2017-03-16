@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 from carrots.common.microclient import Microclient
 from carrots.common.functions import apply
-import pika
+
 
 class Microworker(Microclient):
     def __init__(self, uri, exchange, qin, qout, process):
