@@ -7,5 +7,5 @@ setup(name='carrots',
       author='Croccam',
       author_email='antcarri@gmail.com',
       license='MIT',
-      packages=['funniest'],
+      packages=['carrots'],
       zip_safe=False)

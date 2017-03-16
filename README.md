@@ -12,6 +12,7 @@ These three roles can be understood as the entrypoints, middlepoints, and endpoi
 
 INCLUDE SCHEME
 
+`pip install carrots`
 ## Examples
 
 # TODO
