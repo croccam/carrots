@@ -10,11 +10,16 @@ its own. Blocks communicate through RabbitMQ, but this might get tedious.
 Carrots offer three roles to ease the development of such architectures: microproducers, microworkers, and microconsumers.
 These three roles can be understood as the entrypoints, middlepoints, and endpoints of a network of blocks that conform the service.
 
-INCLUDE SCHEME
 
-`pip install carrots`
 ## Examples
 
 # TODO
+What I'm planning to do soon enough:
+- Why carrots???
+- Explain the architecture, some use cases, draw some diagrams
+- Document this sh*t!
+- Develop the same library for GO and Scala
+- TESTS, TESTS, TESTS!
 
 # Extra
+You're hugely encouraged to request pulls, open issues, or send me e-mails to antcarri at gmail dot com
