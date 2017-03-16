@@ -10,7 +10,8 @@ its own. Blocks communicate through RabbitMQ, but this might get tedious.
 Carrots offer three roles to ease the development of such architectures: microproducers, microworkers, and microconsumers.
 These three roles can be understood as the entrypoints, middlepoints, and endpoints of a network of blocks that conform the service.
 
-
+You can already use the library:
+`pip install carrots`
 ## Examples
 
 # TODO
