@@ -2,7 +2,6 @@
 import pika
 import json
 
-
 class Microproducer(object):
     def __init__(self, uri, exchange, qout):
         self.uri = uri
