@@ -1,6 +1,7 @@
 # !/usr/bin/env python
 import json
-from carrots.common.microclient import Microclient
+
+from carrots import Microclient
 
 
 class Microproducer(Microclient):

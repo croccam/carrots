@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 
-from carrots.common.microclient import Microclient
-from carrots.common.functions import apply
+from carrots import Microclient
+from carrots import apply
 
 
 class Microconsumer(Microclient):
