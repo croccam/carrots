@@ -1,7 +1,5 @@
-# !/usr/bin/env python
-from .common.microclient import Microclient
-from .common.functions import apply
-
+from carrots import Microclient
+from carrots.common.functions import apply
 
 class Microworker(Microclient):
     def __init__(self, uri, exchange, qin, qout, process):
@@ -13,3 +11,4 @@ class Microworker(Microclient):
 
     def work(self):
         self.start()
+        self.start_loop()

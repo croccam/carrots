@@ -12,6 +12,8 @@ class Microclient():
         self.routing = routing
         self.connection = None
         self.channel = None
+        if self.exchange == '':
+            self.declare = self.bind
 
     def connection_open(self, connection):
         self.connection = connection
@@ -41,6 +43,8 @@ class Microclient():
         parameters = pika.URLParameters(self.uri)
         self.connection = pika.SelectConnection(parameters=parameters,
                                                 on_open_callback=self.connection_open)
+
+    def start_loop(self):
         try:
             self.connection.ioloop.start()
         except KeyboardInterrupt:

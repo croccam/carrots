@@ -1,7 +1,5 @@
-# !/usr/bin/env python
-from .common.microclient import Microclient
-from .common.functions import apply
-
+from carrots import Microclient
+from carrots.common.functions import apply
 
 class Microconsumer(Microclient):
     def __init__(self, uri, exchange, qin, process, routing=None):
@@ -15,3 +13,4 @@ class Microconsumer(Microclient):
 
     def receive(self):
         self.start()
+        self.start_loop()

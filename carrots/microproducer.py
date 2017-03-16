@@ -1,8 +1,5 @@
-# !/usr/bin/env python
+from carrots import Microclient
 import json
-
-from .common.microclient import Microclient
-
 
 class Microproducer(Microclient):
     def __init__(self, uri, exchange, qout):
@@ -11,12 +8,15 @@ class Microproducer(Microclient):
 
     def channel_open(self, channel):
         self.channel = channel
+        print('On channel open')
         self.channel.queue_declare(self.declare, queue=self.qout)
 
     def declare(self, x):
+        print('on declare')
         self.channel.queue_bind(self.bind, exchange=self.exchange, queue=self.qout)
 
-    def bind(self, x):
+    def bind(self, *args):
+        print('on bind')
         for item in self.data:
             body = json.dumps(item)
             self.push_carrot(self.qout, body)
@@ -26,3 +26,4 @@ class Microproducer(Microclient):
     def send(self, data):
         self.data = data
         self.start()
+        self.start_loop()
