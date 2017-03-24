@@ -15,8 +15,8 @@ class Microproducer(Microclient):
 
     def bind(self, *args):
         for item in self.data:
-            body = json.dumps(item)
-            self.push_carrot(self.qout, body)
+            #body = json.dumps(item)
+            self.push_carrot(self.qout, item)
         self.connection.close()
         self.connection.ioloop.start()
 
