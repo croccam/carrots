@@ -14,9 +14,12 @@ class Microproducer(Microclient):
         self.channel.queue_bind(self.bind, exchange=self.exchange, queue=self.qout)
 
     def bind(self, *args):
-        for item in self.data:
-            #body = json.dumps(item)
-            self.push_carrot(self.qout, item)
+        if isinstance(self.data,list):
+            for item in self.data:
+                #body = json.dumps(item)
+                self.push_carrot(self.qout, item)
+        else:
+            self.push_carrot(self.qout, self.data)
         self.connection.close()
         self.connection.ioloop.start()
 
