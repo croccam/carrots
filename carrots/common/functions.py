@@ -1,7 +1,6 @@
 import json
 
-def apply(process, channel, method, properties, body):
+def apply(process, channel, method, properties, data):
     channel.basic_ack(delivery_tag=method.delivery_tag)
-    data = json.loads(body)
-    response = json.dumps(process(data))
+    response = process(data)
     return response
