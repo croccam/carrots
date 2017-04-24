@@ -1,7 +1,4 @@
 from setuptools import setup
-with open('requirements.txt') as f:
-    required = f.read().splitlines()
-
 setup(name='carrots',
       version='0.1.11',
       description='Library to build RabbitMQ architectures like you were playing with lego blocks',
@@ -9,7 +6,7 @@ setup(name='carrots',
       author='Croccam',
       author_email='antcarri@gmail.com',
       license='MIT',
-      install_requires=required,
+      install_requires=['pika'],
       packages=['carrots',
                 'carrots.common'],
       zip_safe=False)
