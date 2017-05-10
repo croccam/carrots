@@ -2,13 +2,16 @@ from carrots import Microclient
 import json
 
 class Microproducer(Microclient):
-    def __init__(self, uri, exchange, qout):
-        super().__init__(uri, exchange, qout=qout)
+    def __init__(self, uri, exchange, qout, init_queues=False):
+        super().__init__(uri, exchange, qout=qout, init_queues=init_queues)
         self.data = None
 
     def channel_open(self, channel):
         self.channel = channel
-        self.channel.queue_declare(self.declare, queue=self.qout)
+        if self.init_queues:
+            self.channel.queue_declare(self.declare, queue=self.qout)
+        else:
+            self.declare(None)
 
     def declare(self, x):
         self.channel.queue_bind(self.bind, exchange=self.exchange, queue=self.qout)

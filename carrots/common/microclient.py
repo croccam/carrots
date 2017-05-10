@@ -3,13 +3,14 @@ import pika
 
 
 class Microclient():
-    def __init__(self, uri, exchange, qin=None, qout=None, process=lambda x: x, routing=None):
+    def __init__(self, uri, exchange, qin=None, qout=None, process=lambda x: x, routing=None, init_queues=False):
         self.uri = uri
         self.exchange = exchange
         self.qin = qin
         self.qout = qout
         self.process = process
         self.routing = routing
+        self.init_queues=init_queues
         self.connection = None
         self.channel = None
         if self.exchange == '':
@@ -21,12 +22,15 @@ class Microclient():
 
     def channel_open(self, channel):
         self.channel = channel
-        channel.queue_declare(self.declare, queue=self.qin)
-
+        if self.init_queues:
+            channel.queue_declare(self.declare, queue=self.qin)
+        else:
+            self.declare(None)
     def declare(self, x):
         self.channel.queue_bind(self.bind, exchange=self.exchange, queue=self.qin)
 
     def bind(self, x):
+        self.channel.basic_qos(prefetch_count=1)
         self.channel.basic_consume(self.eat_carrot, self.qin)
 
     def eat_carrot(self, channel, method, properties, body):
